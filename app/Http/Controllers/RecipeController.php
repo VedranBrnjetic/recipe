@@ -6,8 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+
 class RecipeController extends Controller
 {
+    public function __construct()
+    {
+        $this->beforeFilter('csrf', array('on' => ['post', 'put', 'delete']));
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +20,8 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        //
+        $recipes = \App\Recipe::all();
+       return \View::make('recipes.index')->with('recipes', $recipes);
     }
 
     /**

@@ -15,8 +15,9 @@ Route::get('/', 'RecipeController@index');
 Route::resource('recipes', 'RecipeController');
 Route::resource('users', 'UserController');
 Route::resource('ingredients', 'IngredientController');
-Route::get('/database/', function(){
+Route::post('/recipes/list', 'RecipeController@list');
+//Route::get('/database/', function(){
 	//DB::select('drop table ingredients_recipes;');
-	return DB::select('show tables;');
+//	return DB::select('show tables;');
 
-});
+//});
