@@ -14,9 +14,13 @@ class CreateRecipesUsersTable extends Migration
     {
         Schema::create('recipes_users', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('recipe_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->timestamps();
+        });
+        Schema::table('recipes_users', function($table) {
             $table->foreign('recipe_id')->references('id')->on('recipes')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

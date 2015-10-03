@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'RecipeController@index');
+Route::resource('recipes', 'RecipeController');
+Route::resource('users', 'UserController');
+Route::resource('ingredients', 'IngredientController');
+Route::get('/database/', function(){
+	//DB::select('drop table ingredients_recipes;');
+	return DB::select('show tables;');
+
 });
