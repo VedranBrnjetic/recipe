@@ -36,4 +36,15 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    /**
+     * The Recipes that this user starred
+     *
+     * 
+     */
+
+    public function recipesStarred()
+    {
+        return $this->belongsToMany('App\Recipe');
+    }
 }
