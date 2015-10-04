@@ -23,7 +23,21 @@ class RecipeController extends Controller
      
     public function recipe_list()
     {
-         $recipes = \App\Recipe::all();
+
+        if(\Input::has('searchRecipes')){
+            $mode=\Input::get('searchRecipes');
+            $term=\Input::get('searchQuery');
+            if(!empty($mode)){
+                switch($mode){
+                    case 1:
+                        $recipes = \App\Recipe::where('name','Like','%' .$term.'%')->get();
+
+                }
+            }
+        }
+        else{
+            $recipes = \App\Recipe::all();
+        }
          return $recipes->toJson();
     }
     

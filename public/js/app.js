@@ -48,19 +48,20 @@ $(document).ready(function(){
 		if(requestPage===undefined){	requestPage=1;	}
 		
 		$.ajax({
-			url: "classes/app.php",
+			url: "recipes/list",
 			type: "POST",
-			data: {userid: 1,searchRecipes: sMode,searchQuery: gSearchQuery, page: requestPage}	//everyone is Joe for until I get the login feature done...
+			data: {_token: $('#main').attr('data-user'),searchRecipes: sMode,searchQuery: gSearchQuery, page: requestPage}	//everyone is Joe for until I get the login feature done...
 		
 		})
 		.done(function(data){
 			obj=jQuery.parseJSON(data);
 			
-			var recipes=obj['filteredRecipes'];
+			var recipes=obj;
 			
 			//#####################################################PAGINATION######################
 			//Pagination starts here. I created an object that holds all necessary info for the pagination function which returns the html
-			var numberOfPages=Math.ceil(obj.recipeCount[0] / 10);
+			//var numberOfPages=Math.ceil(obj.recipeCount[0] / 10);
+			var numberOfPages=1;
 			//pagination object; will eventually have a function to return html
 			var pagination={
 				numPages: numberOfPages, 
@@ -119,7 +120,7 @@ $(document).ready(function(){
 '          <tr>'+
 '            <th>Recipe</th>'+
 '            <th>Cooking time</th>'+
-'            <th>Main ingredients</th>'+
+//'            <th>Main ingredients</th>'+
 '          </tr>'+
 '        </thead>'+
 '        <tbody>';
@@ -128,8 +129,8 @@ $(document).ready(function(){
 				html=html+
 				'          <tr>'+
 '            <td><a href="recipe.php?id='+value['id']+'">'+value['name']+'</a></td>'+
-'            <td>'+value['cookingTime']+'</td>'+
-'            <td>'+value['ingredients'][0]['name']+', '+value['ingredients'][1]['name']+', '+value['ingredients'][2]['name']+'</td>'+
+'            <td>'+value['cooking_time']+'</td>'+
+//'            <td>'+value['ingredients'][0]['name']+', '+value['ingredients'][1]['name']+', '+value['ingredients'][2]['name']+'</td>'+
 '          </tr>';
 			})
 //close tags
@@ -219,7 +220,7 @@ $(document).ready(function(){
 				html=html+
 				'          <tr>'+
 '            <td><a href="recipe.php?id='+value['id']+'">'+value['name']+'</a></td>'+
-'            <td>'+value['cookingTime']+'</td>'+
+'            <td>'+value['cooking']+'</td>'+
 '          </tr>';
 			})
 //close tags
