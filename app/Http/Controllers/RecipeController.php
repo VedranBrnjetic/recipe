@@ -30,15 +30,25 @@ class RecipeController extends Controller
             if(!empty($mode)){
                 switch($mode){
                     case 1:
-                        $recipes = \App\Recipe::where('name','Like','%' .$term.'%')->get();
+                        $recipes = \App\Recipe::where('name','Like','%' .$term.'%')->with('ingredients')->get();
+                        break;
+                    case 2:
+                        $recipes = \App\Recipe::whereHas('ingredients',function($q) use ($term){
+                            $q->where('name','like','%'.$term.'%');
+                        })->with('ingredients')->get();
+                        break;
+                    case 3:
+                        $recipes = \App\Recipe::where('cooking_time','<=',$term)->with('ingredients')->get();
+                        break;
 
                 }
             }
         }
         else{
-            $recipes = \App\Recipe::all();
+            $recipes = \App\Recipe::take(3)->with('ingredients')->get();
         }
-         return $recipes->toJson();
+
+        return $recipes->toJson();
     }
     
     /**

@@ -16,11 +16,29 @@ Route::resource('recipes', 'RecipeController');
 Route::resource('users', 'UserController');
 Route::resource('ingredients', 'IngredientController');
 Route::post('/recipes/list', 'RecipeController@recipe_list');
-// Route::get('/database/', function(){
-// 	DB::table('recipes')->insert([
-// 		['name'=>'Lemon Chicken','cooking_time' => 30,'image_url'=>'lemon_chicken.jpg'],
-// 		['name'=>'Beef Stroganoff','cooking_time' => 30,'image_url'=>'beef_stroganoff.jpg'],
-// 		['name'=>'Caesar Salad','cooking_time' => 25,'image_url'=>'caesar_salad.jpg']
-// 		]);
-// 	return DB::select('select * from recipes;');
-// });
+Route::get('/database/', function(){
+	// DB::table('ingredients')->insert([
+	// 	['name'=>'Chicken Breasts','unit' => 'pieces','unit_representation'=>'x'],
+	// 	['name'=>'Thyme','unit' => 'table spoons','unit_representation'=>'tsp'],
+	// 	['name'=>'Lemon','unit' => 'pieces','unit_representation'=>'x'],
+	// 	['name'=>'Beef','unit' => 'grams','unit_representation'=>'g'],
+	// 	['name'=>'Mustard','unit' => 'grams','unit_representation'=>'g'],
+	// 	['name'=>'Mushrooms','unit' => 'grams','unit_representation'=>'g'],
+	// 	['name'=>'Lettuce','unit' => 'pieces','unit_representation'=>'x'],
+	// 	['name'=>'Croutons','unit' => 'table spoons','unit_representation'=>'tsp'],
+	// 	['name'=>'Parmesan','unit' => 'grams','unit_representation'=>'g']
+	// 	]);
+
+	// DB::table('ingredients_recipes')->insert([
+	// 	['recipe_id' => 1,'ingredient_id' => 1, 'amount' => 4],
+	// 	['recipe_id' => 1,'ingredient_id' => 2, 'amount' => 1],
+	// 	['recipe_id' => 1,'ingredient_id' => 3, 'amount' => 2],
+	// 	['recipe_id' => 2,'ingredient_id' => 4, 'amount' => 500],
+	// 	['recipe_id' => 2,'ingredient_id' => 5, 'amount' => 25],
+	// 	['recipe_id' => 2,'ingredient_id' => 6, 'amount' => 300],
+	// 	['recipe_id' => 3,'ingredient_id' => 7, 'amount' => 2],
+	// 	['recipe_id' => 3,'ingredient_id' => 8, 'amount' => 5],
+	// 	['recipe_id' => 3,'ingredient_id' => 9, 'amount' => 50]
+	// 	]);
+	return DB::select('select * from ingredients;');
+});
