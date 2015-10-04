@@ -13,6 +13,20 @@ class RecipeController extends Controller
     {
         $this->beforeFilter('csrf', array('on' => ['post', 'put', 'delete']));
     }
+
+     /**
+     * Remove the specified resource from storage.
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+     
+    public function recipe_list()
+    {
+         $recipes = \App\Recipe::all();
+         return $recipes->toJson();
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -89,4 +103,6 @@ class RecipeController extends Controller
     {
         //
     }
+
+
 }

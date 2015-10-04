@@ -1,12 +1,15 @@
 @extends('layouts.home')
 @section('htmlHeadSeo')
+{{
     <meta name="keywords" content="Recipes">
     <meta name="description" content="The recipe book">
     <meta name="author" content="Vedran Brnjetic for BBC">
 
     <title>BBC Recipes</title>
+}}
 @stop
 @section('about')
+{{
    <div class="col-lg-12 text-center">
                     <h2>Welcome to our Recipe book, we are sure you are hungry for more</h2>
                     <p class="lead">Start browsing our recipes today!</p>
@@ -47,4 +50,5 @@
                         </div>
                     </div>
                 </div>
+}}
 @stop

@@ -27,7 +27,7 @@
 
 </head>
 <body>
-    <main id="main" data-user=""></main>  <!-- user id into data-user -->
+    <main id="main" data-user="<?php echo csrf_token(); ?>"></main>  <!-- user id into data-user -->
     <!-- Navigation -->
     <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
     <nav id="sidebar-wrapper">
@@ -77,8 +77,7 @@
             <div class="row text-center">
                 <div class="col-lg-10 col-lg-offset-1">
                     <h2>Our featured recipes</h2>
-                    <hr class="small">
-                                                                                <?php //RECIPE LIST?>                    
+                    <hr class="small">                
                     <div id="recipe-list" class="row">
                        
                     </div>
