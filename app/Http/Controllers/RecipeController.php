@@ -12,6 +12,7 @@ class RecipeController extends Controller
     public function __construct()
     {
         $this->beforeFilter('csrf', array('on' => ['post', 'put', 'delete']));
+        $this->middleware('auth',['on' => ['post', 'put', 'delete']]);
     }
 
      /**
@@ -91,7 +92,19 @@ class RecipeController extends Controller
      */
     public function show($id)
     {
-        //
+        $userid=\Auth::id();
+        $recipe = \App\Recipe::findOrFail($id);
+        $starredList = \App\Recipe::whereHas('users', function($q) use ($userid){
+            
+            $q->where('users.id','=',$userid);
+            //echo'here';
+        })->get();
+        $ingredients = $recipe->ingredients()->get();
+
+        return \View::make('recipes.show')
+            ->withRecipe($recipe)
+            ->withStarredRecipe($starredList)
+            ->withIngredients($ingredients);
     }
 
     /**

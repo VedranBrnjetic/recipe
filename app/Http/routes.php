@@ -11,12 +11,29 @@
 |
 */
 
+// Authentication routes...
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+// Registration routes...
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
+Route::controllers([
+   'password' => 'Auth\PasswordController',
+]);
+
 Route::get('/', 'RecipeController@index');
 Route::resource('recipes', 'RecipeController');
 Route::resource('users', 'UserController');
 Route::resource('ingredients', 'IngredientController');
 Route::post('/recipes/list', 'RecipeController@recipe_list');
+//database setup
 Route::get('/database/', function(){
+	//Let's add Joe
+	//DB::table('users')->insert(['name' => 'Joe','email'=>'Joe.ext@bbc.com','password' => bcrypt('IloveCooking')]);
+	
+	//Buying ingredients
 	// DB::table('ingredients')->insert([
 	// 	['name'=>'Chicken Breasts','unit' => 'pieces','unit_representation'=>'x'],
 	// 	['name'=>'Thyme','unit' => 'table spoons','unit_representation'=>'tsp'],
@@ -29,6 +46,13 @@ Route::get('/database/', function(){
 	// 	['name'=>'Parmesan','unit' => 'grams','unit_representation'=>'g']
 	// 	]);
 
+	//Mixing up recipes
+	// DB::table('recipes')->insert([
+	// 	['name'=>'Lemon Chicken','cooking_time' => 30,'image_url'=>'lemon_chicken.jpg'],
+	// 	['name'=>'Beef Stroganoff','cooking_time' => 30,'image_url'=>'beef_stroganoff.jpg'],
+	// 	['name'=>'Caesar salad','cooking_time' => 25,'image_url'=>'caesar_salad.jpg'],
+	
+	//Adding spices
 	// DB::table('ingredients_recipes')->insert([
 	// 	['recipe_id' => 1,'ingredient_id' => 1, 'amount' => 4],
 	// 	['recipe_id' => 1,'ingredient_id' => 2, 'amount' => 1],
@@ -40,5 +64,7 @@ Route::get('/database/', function(){
 	// 	['recipe_id' => 3,'ingredient_id' => 8, 'amount' => 5],
 	// 	['recipe_id' => 3,'ingredient_id' => 9, 'amount' => 50]
 	// 	]);
-	return DB::select('select * from ingredients;');
+
+
+	//return DB::select('select * from users;');
 });

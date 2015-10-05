@@ -3,7 +3,7 @@ $(document).ready(function(){
 	var gSearchQuery="";
 	/*Initial request - gets current user from app and displays the name */
 	$.ajax({
-		url: "recipes/list",
+		url: "/recipes/list",
 		type: "POST",
 		data: {_token: $('#main').attr('data-user')}	
 		/*here is the data sent to chat server*/
@@ -22,10 +22,10 @@ $(document).ready(function(){
                                 '<i class="fa fa-circle fa-stack-2x"></i>'+
                                 '<i class="fa fa-cutlery fa-stack-1x text-primary"></i></span>'+
                                 '<h4><strong>'+value['name']+'</strong></h4>'+
-                                //'<p>'+value['ingredients'][0]['name']+'</p>'+
-                                //'<p>'+value['ingredients'][1]['name']+'</p>'+
-                                //'<p>'+value['ingredients'][2]['name']+'</p>'+
-                                '<a href="recipe.php?id='+value['id']+'" class="btn btn-light" data>View Details</a>'+
+                                '<p>'+value['ingredients'][0]['name']+'</p>'+
+                                '<p>'+value['ingredients'][1]['name']+'</p>'+
+                                '<p>'+value['ingredients'][2]['name']+'</p>'+
+                                '<a href="/recipes/'+value['id']+'" class="btn btn-light" data>View Details</a>'+
                             '</div>'+
                         '</div>';
 			});
@@ -50,7 +50,10 @@ $(document).ready(function(){
 		$.ajax({
 			url: "recipes/list",
 			type: "POST",
-			data: {_token: $('#main').attr('data-user'),searchRecipes: sMode,searchQuery: gSearchQuery, page: requestPage}	//everyone is Joe for until I get the login feature done...
+			data: {_token: $('#main').attr('data-user'),
+			       searchRecipes: sMode,
+			       searchQuery: gSearchQuery, 
+			       page: requestPage}	//everyone is Joe for until I get the login feature done...
 		
 		})
 		.done(function(data){
@@ -120,7 +123,7 @@ $(document).ready(function(){
 '          <tr>'+
 '            <th>Recipe</th>'+
 '            <th>Cooking time</th>'+
-//'            <th>Main ingredients</th>'+
+'            <th>Main ingredients</th>'+
 '          </tr>'+
 '        </thead>'+
 '        <tbody>';
@@ -128,9 +131,9 @@ $(document).ready(function(){
 			jQuery.each(recipes,function(index,value){
 				html=html+
 				'          <tr>'+
-'            <td><a href="recipe.php?id='+value['id']+'">'+value['name']+'</a></td>'+
+'            <td><a href="/recipes/'+value['id']+'">'+value['name']+'</a></td>'+
 '            <td>'+value['cooking_time']+'</td>'+
-//'            <td>'+value['ingredients'][0]['name']+', '+value['ingredients'][1]['name']+', '+value['ingredients'][2]['name']+'</td>'+
+'            <td>'+value['ingredients'][0]['name']+', '+value['ingredients'][1]['name']+', '+value['ingredients'][2]['name']+'</td>'+
 '          </tr>';
 			})
 //close tags
@@ -188,7 +191,7 @@ $(document).ready(function(){
 	$("#toggle-star").click(function(e){
 		e.preventDefault();
 		$.ajax({
-			url: "classes/app.php",
+			url: "/recipes/list",
 			type: "POST",
 			data: {action: 'starrecipe', userid: $("#main").attr("data-user"), recipeid: $("#main").attr("data-recipe")}	
 		/*here is the data sent to chat server*/
