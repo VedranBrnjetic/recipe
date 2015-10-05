@@ -43,8 +43,8 @@ class User extends Model implements AuthenticatableContract,
      * 
      */
 
-    // public function recipesStarred()
-    // {
-    //     return $this->belongsToMany('App\Recipe');
-    // }
+    public function recipes()
+    {
+        return $this->belongsToMany('\App\Recipe','recipes_users');
+    }
 }

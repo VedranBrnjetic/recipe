@@ -19,8 +19,8 @@ class Recipe extends Model
      * The Users who starred this Recipe.
      */
 
-    // public function usersStarred()
-    // {
-    //     return $this->belongsToMany('App\User');
-    // }
+    public function users()
+    {
+        return $this->belongsToMany('\App\User','recipes_users');
+    }
 }
