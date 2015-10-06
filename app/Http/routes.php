@@ -114,4 +114,4 @@ Route::get('/database/', function(){
 	 	['recipe_id' => 12,'ingredient_id' => 8, 'amount' => 5],
 	 	['recipe_id' => 12,'ingredient_id' => 9, 'amount' => 50]
 	 	]);
-	}
+	});
