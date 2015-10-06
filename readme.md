@@ -17,7 +17,7 @@ $ sudo apt-get install php5 libapache2-mod-php5
 $ sudo apt-get install php5-mcrypt
 
 ———- Installing MYSQL ———-
-##root no password
+root no password
 $sudo apt-get install mysql-server
 $sudo apt-get install php5-mysql
 
