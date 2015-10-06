@@ -31,41 +31,87 @@ Route::post('/recipes/list', 'RecipeController@recipe_list');
 //database setup
 Route::get('/database/', function(){
 	//Let's add Joe
-	//DB::table('users')->insert(['name' => 'Joe','email'=>'Joe.ext@bbc.com','password' => bcrypt('IloveCooking')]);
+	DB::table('users')->insert(['name' => 'Joe','email'=>'Joe.ext@bbc.com','password' => bcrypt('IloveCooking')]);
 	
 	//Buying ingredients
-	// DB::table('ingredients')->insert([
-	// 	['name'=>'Chicken Breasts','unit' => 'pieces','unit_representation'=>'x'],
-	// 	['name'=>'Thyme','unit' => 'table spoons','unit_representation'=>'tsp'],
-	// 	['name'=>'Lemon','unit' => 'pieces','unit_representation'=>'x'],
-	// 	['name'=>'Beef','unit' => 'grams','unit_representation'=>'g'],
-	// 	['name'=>'Mustard','unit' => 'grams','unit_representation'=>'g'],
-	// 	['name'=>'Mushrooms','unit' => 'grams','unit_representation'=>'g'],
-	// 	['name'=>'Lettuce','unit' => 'pieces','unit_representation'=>'x'],
-	// 	['name'=>'Croutons','unit' => 'table spoons','unit_representation'=>'tsp'],
-	// 	['name'=>'Parmesan','unit' => 'grams','unit_representation'=>'g']
-	// 	]);
+	 DB::table('ingredients')->insert([
+		['name'=>'Chicken Breasts','unit' => 'pieces','unit_representation'=>'x'],
+	 	['name'=>'Thyme','unit' => 'table spoons','unit_representation'=>'tsp'],
+	 	['name'=>'Lemon','unit' => 'pieces','unit_representation'=>'x'],
+	 	['name'=>'Beef','unit' => 'grams','unit_representation'=>'g'],
+	 	['name'=>'Mustard','unit' => 'grams','unit_representation'=>'g'],
+	 	['name'=>'Mushrooms','unit' => 'grams','unit_representation'=>'g'],
+	 	['name'=>'Lettuce','unit' => 'pieces','unit_representation'=>'x'],
+	 	['name'=>'Croutons','unit' => 'table spoons','unit_representation'=>'tsp'],
+	 	['name'=>'Parmesan','unit' => 'grams','unit_representation'=>'g']
+	 	]);
 
 	//Mixing up recipes
-	// DB::table('recipes')->insert([
-	// 	['name'=>'Lemon Chicken','cooking_time' => 30,'image_url'=>'lemon_chicken.jpg'],
-	// 	['name'=>'Beef Stroganoff','cooking_time' => 30,'image_url'=>'beef_stroganoff.jpg'],
-	// 	['name'=>'Caesar salad','cooking_time' => 25,'image_url'=>'caesar_salad.jpg']
-	//	]);
+	 DB::table('recipes')->insert([
+	 	['name'=>'Lemon Chicken','cooking_time' => 30,'image_url'=>'lemon_chicken.jpg'],
+	 	['name'=>'Beef Stroganoff','cooking_time' => 30,'image_url'=>'beef_stroganoff.jpg'],
+	 	['name'=>'Caesar salad','cooking_time' => 25,'image_url'=>'caesar_salad.jpg']
+		]);
 	
 	//Adding spices
-	// DB::table('ingredients_recipes')->insert([
-	// 	['recipe_id' => 1,'ingredient_id' => 1, 'amount' => 4],
-	// 	['recipe_id' => 1,'ingredient_id' => 2, 'amount' => 1],
-	// 	['recipe_id' => 1,'ingredient_id' => 3, 'amount' => 2],
-	// 	['recipe_id' => 2,'ingredient_id' => 4, 'amount' => 500],
-	// 	['recipe_id' => 2,'ingredient_id' => 5, 'amount' => 25],
-	// 	['recipe_id' => 2,'ingredient_id' => 6, 'amount' => 300],
-	// 	['recipe_id' => 3,'ingredient_id' => 7, 'amount' => 2],
-	// 	['recipe_id' => 3,'ingredient_id' => 8, 'amount' => 5],
-	// 	['recipe_id' => 3,'ingredient_id' => 9, 'amount' => 50]
-	// 	]);
+	 DB::table('ingredients_recipes')->insert([
+	 	['recipe_id' => 1,'ingredient_id' => 1, 'amount' => 4],
+	 	['recipe_id' => 1,'ingredient_id' => 2, 'amount' => 1],
+	 	['recipe_id' => 1,'ingredient_id' => 3, 'amount' => 2],
+	 	['recipe_id' => 2,'ingredient_id' => 4, 'amount' => 500],
+	 	['recipe_id' => 2,'ingredient_id' => 5, 'amount' => 25],
+	 	['recipe_id' => 2,'ingredient_id' => 6, 'amount' => 300],
+	 	['recipe_id' => 3,'ingredient_id' => 7, 'amount' => 2],
+	 	['recipe_id' => 3,'ingredient_id' => 8, 'amount' => 5],
+	 	['recipe_id' => 3,'ingredient_id' => 9, 'amount' => 50]
+	 	]);
 
 
-	//return DB::select('select * from users;');
+	return DB::select('select * from users;');
 });
+	//add more recipes to show pagination
+	Route::get('/database2/', function(){
+		
+	 DB::table('recipes')->insert([
+	 	['name'=>'Lemon Chicken','cooking_time' => 30,'image_url'=>'lemon_chicken.jpg'],
+	 	['name'=>'Beef Stroganoff','cooking_time' => 30,'image_url'=>'beef_stroganoff.jpg'],
+	 	['name'=>'Caesar salad','cooking_time' => 25,'image_url'=>'caesar_salad.jpg'],
+	 	['name'=>'Lemon Chicken','cooking_time' => 30,'image_url'=>'lemon_chicken.jpg'],
+	 	['name'=>'Beef Stroganoff','cooking_time' => 30,'image_url'=>'beef_stroganoff.jpg'],
+	 	['name'=>'Caesar salad','cooking_time' => 25,'image_url'=>'caesar_salad.jpg'],
+	 	['name'=>'Lemon Chicken','cooking_time' => 30,'image_url'=>'lemon_chicken.jpg'],
+	 	['name'=>'Beef Stroganoff','cooking_time' => 30,'image_url'=>'beef_stroganoff.jpg'],
+	 	['name'=>'Caesar salad','cooking_time' => 25,'image_url'=>'caesar_salad.jpg']
+		]);
+	
+	//Adding spices
+	 DB::table('ingredients_recipes')->insert([
+	 	['recipe_id' => 4,'ingredient_id' => 1, 'amount' => 4],
+	 	['recipe_id' => 4,'ingredient_id' => 2, 'amount' => 1],
+	 	['recipe_id' => 4,'ingredient_id' => 3, 'amount' => 2],
+	 	['recipe_id' => 5,'ingredient_id' => 4, 'amount' => 500],
+	 	['recipe_id' => 5,'ingredient_id' => 5, 'amount' => 25],
+	 	['recipe_id' => 5,'ingredient_id' => 6, 'amount' => 300],
+	 	['recipe_id' => 6,'ingredient_id' => 7, 'amount' => 2],
+	 	['recipe_id' => 6,'ingredient_id' => 8, 'amount' => 5],
+	 	['recipe_id' => 6,'ingredient_id' => 9, 'amount' => 50],
+	 	['recipe_id' => 7,'ingredient_id' => 1, 'amount' => 4],
+	 	['recipe_id' => 7,'ingredient_id' => 2, 'amount' => 1],
+	 	['recipe_id' => 7,'ingredient_id' => 3, 'amount' => 2],
+	 	['recipe_id' => 8,'ingredient_id' => 4, 'amount' => 500],
+	 	['recipe_id' => 8,'ingredient_id' => 5, 'amount' => 25],
+	 	['recipe_id' => 8,'ingredient_id' => 6, 'amount' => 300],
+	 	['recipe_id' => 9,'ingredient_id' => 7, 'amount' => 2],
+	 	['recipe_id' => 9,'ingredient_id' => 8, 'amount' => 5],
+	 	['recipe_id' => 9,'ingredient_id' => 9, 'amount' => 50],
+	 	['recipe_id' => 10,'ingredient_id' => 1, 'amount' => 4],
+	 	['recipe_id' => 10,'ingredient_id' => 2, 'amount' => 1],
+	 	['recipe_id' => 10,'ingredient_id' => 3, 'amount' => 2],
+	 	['recipe_id' => 11,'ingredient_id' => 4, 'amount' => 500],
+	 	['recipe_id' => 11,'ingredient_id' => 5, 'amount' => 25],
+	 	['recipe_id' => 11,'ingredient_id' => 6, 'amount' => 300],
+	 	['recipe_id' => 12,'ingredient_id' => 7, 'amount' => 2],
+	 	['recipe_id' => 12,'ingredient_id' => 8, 'amount' => 5],
+	 	['recipe_id' => 12,'ingredient_id' => 9, 'amount' => 50]
+	 	]);
+	}
