@@ -59,12 +59,12 @@ $(document).ready(function(){
 		.done(function(data){
 			obj=jQuery.parseJSON(data);
 			
-			var recipes=obj;
+			var recipes=obj['recipes'];
 			
 			//#####################################################PAGINATION######################
 			//Pagination starts here. I created an object that holds all necessary info for the pagination function which returns the html
 			//var numberOfPages=Math.ceil(obj.recipeCount[0] / 10);
-			var numberOfPages=1;
+			var numberOfPages=Math.ceil(obj.recipeCount[0] / 10);
 			//pagination object; will eventually have a function to return html
 			var pagination={
 				numPages: numberOfPages, 

@@ -1,5 +1,27 @@
-<?php
 
+Skip to content
+This repository
+
+    Explore
+    Features
+    Enterprise
+    Pricing
+
+1
+0
+
+    0
+
+VedranBrnjetic/recipe
+
+recipe/app/Http/routes.php
+@VedranBrnjetic VedranBrnjetic 11 hours ago Update routes.php
+
+2 contributors
+@VedranBrnjetic
+@invalid-email-address
+118 lines (106 sloc) 5.39 KB
+<?php
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -10,19 +32,16 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
-
 // Registration routes...
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::controllers([
    'password' => 'Auth\PasswordController',
 ]);
-
 Route::get('/', 'RecipeController@index');
 Route::resource('recipes', 'RecipeController');
 Route::resource('users', 'UserController');
@@ -45,7 +64,6 @@ Route::get('/database/', function(){
 	 	['name'=>'Croutons','unit' => 'table spoons','unit_representation'=>'tsp'],
 	 	['name'=>'Parmesan','unit' => 'grams','unit_representation'=>'g']
 	 	]);
-
 	//Mixing up recipes
 	 DB::table('recipes')->insert([
 	 	['name'=>'Lemon Chicken','cooking_time' => 30,'image_url'=>'lemon_chicken.jpg'],
@@ -65,8 +83,6 @@ Route::get('/database/', function(){
 	 	['recipe_id' => 3,'ingredient_id' => 8, 'amount' => 5],
 	 	['recipe_id' => 3,'ingredient_id' => 9, 'amount' => 50]
 	 	]);
-
-
 	return DB::select('select * from users;');
 });
 	//add more recipes to show pagination
@@ -114,4 +130,6 @@ Route::get('/database/', function(){
 	 	['recipe_id' => 12,'ingredient_id' => 8, 'amount' => 5],
 	 	['recipe_id' => 12,'ingredient_id' => 9, 'amount' => 50]
 	 	]);
-	});
+	}
+
+  

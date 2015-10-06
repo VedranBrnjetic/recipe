@@ -28,18 +28,25 @@ class RecipeController extends Controller
         if(\Input::has('searchRecipes')){
             $mode=\Input::get('searchRecipes');
             $term=\Input::get('searchQuery');
+            if(!($page=\Input::get('page'))$page=1;
+            $skip=($page-1)*10;
             if(!empty($mode)){
                 switch($mode){
                     case 1:
-                        $recipes = \App\Recipe::where('name','Like','%' .$term.'%')->with('ingredients')->get();
+                        $numresults= \App\Recipe::where('name','Like','%' .$term.'%')->with('ingredients')->count();
+                        $recipes = \App\Recipe::where('name','Like','%' .$term.'%')->skip($skip)->take(10)->with('ingredients')->get();
                         break;
                     case 2:
+                        $numresults = $recipes = \App\Recipe::whereHas('ingredients',function($q) use ($term){
+                            $q->where('name','like','%'.$term.'%');
+                        })->with('ingredients')->count();
                         $recipes = \App\Recipe::whereHas('ingredients',function($q) use ($term){
                             $q->where('name','like','%'.$term.'%');
-                        })->with('ingredients')->get();
+                        })->skip($skip)->take(10)->with('ingredients')->get();
                         break;
                     case 3:
-                        $recipes = \App\Recipe::where('cooking_time','<=',$term)->with('ingredients')->get();
+                        $numresults = \App\Recipe::where('cooking_time','<=',$term)->with('ingredients')->count();
+                        $recipes = \App\Recipe::where('cooking_time','<=',$term)->skip($skip)->take(10)->with('ingredients')->get();
                         break;
 
                 }
@@ -48,8 +55,9 @@ class RecipeController extends Controller
         else{
             $recipes = \App\Recipe::take(3)->with('ingredients')->get();
         }
-
-        return $recipes->toJson();
+        $return['recipeCount']=$numresults;
+        $return['recipes']=$recipes->toJson;
+        return $return;
     }
     
     /**
