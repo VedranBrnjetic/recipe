@@ -50,7 +50,8 @@ Route::get('/database/', function(){
 	// DB::table('recipes')->insert([
 	// 	['name'=>'Lemon Chicken','cooking_time' => 30,'image_url'=>'lemon_chicken.jpg'],
 	// 	['name'=>'Beef Stroganoff','cooking_time' => 30,'image_url'=>'beef_stroganoff.jpg'],
-	// 	['name'=>'Caesar salad','cooking_time' => 25,'image_url'=>'caesar_salad.jpg'],
+	// 	['name'=>'Caesar salad','cooking_time' => 25,'image_url'=>'caesar_salad.jpg']
+	//	]);
 	
 	//Adding spices
 	// DB::table('ingredients_recipes')->insert([
