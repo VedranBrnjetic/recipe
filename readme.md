@@ -1,27 +1,48 @@
-## Laravel PHP Framework
+Procedure to move a vagrant laravel project to clean new AWS EC2 t2.micro box:
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+———- Installing Apache ———-
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+$ sudo apt-get install apache2 
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+———- Installing Latest PHP ———-
 
-## Official Documentation
+$ sudo add-apt-repository ppa:ondrej/php5
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+$ sudo apt-get update
 
-## Contributing
+$ sudo apt-get install php5 libapache2-mod-php5
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+———- Installing PHP Mcrypt ext. ———-
 
-## Security Vulnerabilities
+$ sudo apt-get install php5-mcrypt
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+———- Installing MYSQL ———-
+##root no password
+$sudo apt-get install mysql-server
+$sudo apt-get install php5-mysql
 
-### License
+———- Installing GIT ———-
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+$ sudo apt-get install git-core
+
+———- Laravel recipe GIT Repo ———-
+$ cd /var/www/http
+$ sudo git clone https://github.com/VedranBrnjetic/recipe.git .
+
+———- Installing Composer ———-
+$ sudo chmod -R 777 recipe/
+$ sudo chown www-data recipe/
+$ cd recipe
+$ sudo curl -sS https://getcomposer.org/installer | php
+$ sudo php composer.phar install
+
+———- Create database ———-
+$ echo "create database recipe" | mysql -u root
+$ echo "grant all privileges on recipe.* to 'MasterChef'@'localhost' identified by 'g1vemethe1ngred1ents';" | mysql -u root
+
+———- Configure environment ———-
+$ sudo php artisan key:generate
+$ sudo cp /var/www/html/env_config/apache2.conf /etc/apache2/apache2.conf
+$ sudo cp /var/www/html/env_config/000-default.conf /etc/apache2/sites-available/000-default.conf
+$ sudo a2enmod rewrite
+$ sudo service apache2 restart
