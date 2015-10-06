@@ -17,7 +17,7 @@ $ sudo apt-get install php5 libapache2-mod-php5
 $ sudo apt-get install php5-mcrypt
 
 ———- Installing MYSQL ———-
-root no password
+//root no password
 $sudo apt-get install mysql-server
 $sudo apt-get install php5-mysql
 
@@ -46,3 +46,4 @@ $ sudo cp /var/www/html/env_config/apache2.conf /etc/apache2/apache2.conf
 $ sudo cp /var/www/html/env_config/000-default.conf /etc/apache2/sites-available/000-default.conf
 $ sudo a2enmod rewrite
 $ sudo service apache2 restart
+$ curl http://localhost/database
