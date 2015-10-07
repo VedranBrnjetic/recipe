@@ -31,7 +31,7 @@ $ sudo apt-get install git-core
 ———- Laravel recipe GIT Repo ———-
 
 $ cd /var/www/http
-
+$ sudo rm index.html
 $ sudo git clone https://github.com/VedranBrnjetic/recipe.git .
 
 ———- Installing Composer ———-
