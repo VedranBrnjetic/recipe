@@ -9,6 +9,7 @@ sudo apt-get install mysql-server
 sudo apt-get install php5-mysql
 sudo apt-get install git-core
 cd /var/www/html
+sudo rm -r *
 sudo git clone https://github.com/VedranBrnjetic/recipe.git .
 sudo chmod -R 777 ./
 sudo chown www-data ./
