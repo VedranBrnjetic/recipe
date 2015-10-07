@@ -18,6 +18,7 @@ sudo php composer.phar install
 echo "create database recipe" | mysql -u root
 echo "grant all privileges on recipe.* to 'MasterChef'@'localhost' identified by 'g1vemethe1ngred1ents';" | mysql -u root
 sudo php artisan key:generate
+sudo php artisan migrate
 sudo cp /var/www/html/env_config/apache2.conf /etc/apache2/apache2.conf
 sudo cp /var/www/html/env_config/000-default.conf /etc/apache2/sites-available/000-default.conf
 sudo a2enmod rewrite
