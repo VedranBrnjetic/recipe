@@ -10,9 +10,8 @@ sudo apt-get install php5-mysql
 sudo apt-get install git-core
 cd /var/www/html
 sudo git clone https://github.com/VedranBrnjetic/recipe.git .
-sudo chmod -R 777 recipe/
-sudo chown www-data recipe/
-cd recipe
+sudo chmod -R 777 ./
+sudo chown www-data ./
 sudo curl -sS https://getcomposer.org/installer | php
 sudo php composer.phar install
 echo "create database recipe" | mysql -u root
