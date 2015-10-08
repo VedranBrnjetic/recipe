@@ -55,7 +55,7 @@ class RecipeController extends Controller
         else{
             $recipes = \App\Recipe::take(3)->with('ingredients')->get();
         }
-        $return['recipeCount']=$numresults;
+        $return['recipeCount']=[$numresults];
         $return['recipes']=$recipes->toJson;
         return $return;
     }
